@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 from instructions import *
 
 class FinalWin(QWidget):
@@ -15,4 +15,11 @@ class FinalWin(QWidget):
     self.move(win_x, win_y)
 
   def initUI(self):
-    pass
+    self.work_text = QLabel(txt_workheart + self.results())
+    self.index_text = QLabel(txt_index + str(self.index))
+
+
+    self.layout_line = QVBoxLayout()
+    self.layout_line.addWidget(self.index_text, alignment = Qt.AlignCenter)
+    self.layout_line.addWidget(self.work_text, alignment = Qt.AlignCenter)        
+    self.setLayout(self.layout_line)
