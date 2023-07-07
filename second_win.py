@@ -4,6 +4,13 @@ from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout
 from instructions import *
 from final_win import *
 
+class Experiment():
+  def __init__(self, age, t1, t2, t3):
+    self.age = age
+    self.t1 = t1
+    self.t2 = t2
+    self.t3 = t3
+
 class TestWin(QWidget):
   def __init__(self):
     super().__init__()
@@ -31,21 +38,15 @@ class TestWin(QWidget):
     self.text_timer = QLabel(txt_timer)
     self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
 
-
     self.line_name = QLineEdit(txt_hintname)
-
 
     self.line_age = QLineEdit(txt_hintage)
 
-
     self.line_test1 = QLineEdit(txt_hinttest1)
-
 
     self.line_test2 = QLineEdit(txt_hinttest2)
 
-
     self.line_test3 = QLineEdit(txt_hinttest3)
-
 
     self.l_line = QVBoxLayout()
     self.r_line = QVBoxLayout()
@@ -71,7 +72,13 @@ class TestWin(QWidget):
   
   def next_click(self):
     self.hide()
-    self.tw = FinalWin()
+    self.exp = Experiment(
+      self.line_age.text(),
+      self.line_test1.text(),
+      self.line_test2.text(),
+      self.line_test3.text(),
+    )
+    self.tw = FinalWin(self.exp)
   
   def timer1Event(self):
     global time
